@@ -202,15 +202,16 @@
         </li>
         <li>
           <a href="#sample-pages-y" data-toggle="collapse" aria-expanded="false">
-            <span class="link-title">Tin tức</span>
+            <span class="link-title">Lương</span>
             <i class="mdi mdi-book-open link-icon"></i>
           </a>
           <ul class="collapse navigation-submenu" id="sample-pages-y">
             <li>
-              <a href="<?= url('admin/blog-category') ?>">Danh mục</a>
+              <a href="<?= url('admin/wage') ?>">Lương</a>
             </li>
             <li>
-              <a href="<?= url('admin/blog/') ?>">Bài viết</a>
+              <a href="<?= url('admin/blog/') ?>"> Chấm công
+            </a>
             </li>
           </ul>
         </li>

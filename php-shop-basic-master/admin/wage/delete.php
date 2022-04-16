@@ -11,16 +11,16 @@ if (!Auth::user()) {
     
 $id   = Input::get('id');
 
-$data = $DB->find('danhmuc_blog', $id);
+$data = $DB->find('luong', $id);
 
 if (!is_object($data)) {
-    die('Không tồn tại danh mục');
+    die('Không tồn tại lương');
 }
 
-$deleted = $DB->delete('danhmuc_blog',$id);
+$deleted = $DB->delete('luong',$id);
 
 if($deleted === true){
-    Redirect::url('admin/blog-category');
+    Redirect::url('admin/wage');
 }
 
 die('Vui lòng thử lại');

@@ -8,28 +8,32 @@ if (!Auth::user()) {
     Redirect::url('admin/account/login.php');
 }
 
-
+$chamcong = $DB->query('SELECT * FROM  chamcong');
 //================= validate
 
 if (Input::hasPost('create')) {
 
-    $tendanhmuc = Input::post('tendanhmuc');
-    $mota       = Input::post('mota');
+    $maBCC = Input::post('bcc_id');
+    $ngaytao       = Input::post('ngaytao');
+    $nguoitao       = Input::post('nguoitao');
+    $luong       = Input::post('luong');
 
-    Validator::required($tendanhmuc, "Vui lòng nhập tên danh mục")
-        ->min($tendanhmuc, 3, "Tên danh mục phải lớn hơn 3 kí ự")
-        ->required($mota, "Vui lòng nhập mô tả ")
-        ->min($mota, 3, "Mô tả quá ngắn ");
+    Validator::required($nguoitao, "Vui lòng nhập tên người tạo")
+        ->min($nguoitao, 3, "Tên người tạo phải lớn hơn 3 kí ự")
+        ->required($luong, "Vui lòng nhập lương ")
+        ->min($luong, 3, "Lương quá ngắn ");
 
 
     if (!Validator::anyErrors()) {
-        $success = $DB->create('danhmuc_blog',[
-            'tendanhmuc' => $tendanhmuc,
-            'mota'       => $mota,
+        $success = $DB->create('luong',[
+            'maBCC' => $maBCC,
+            'ngaytao'       => $ngaytao,
+            'nguoitao'       => $nguoitao,
+            'luong'       => $luong,
         ]);
 
         if($success === true){
-            $alertSuccess = "Thêm danh mục thành công";
+            $alertSuccess = "Thêm lương thành công";
         }
         else{
             $alertErr     = $success;
@@ -37,13 +41,13 @@ if (Input::hasPost('create')) {
     }
 }
 
-$title = "Thêm mới danh mục sản phẩm";
+$title = "Thêm mới lương";
 include('../../layouts/admin/header.php');
 
 ?>
 <div class="d-flex justify-content-between mb-4">
-    <h4>Thêm mới danh mục</h4>
-    <a href="<?= url('admin/blog-category') ?>" class="btn btn-primary btn-sm"><i class="mdi mdi-arrow-left-bold"></i></a>
+    <h4>Thêm mới lương</h4>
+    <a href="<?= url('admin/wage') ?>" class="btn btn-primary btn-sm"><i class="mdi mdi-arrow-left-bold"></i></a>
 </div>
 <div class="container">
     <div class="grid-body">
@@ -81,19 +85,40 @@ include('../../layouts/admin/header.php');
 
                         <div class="form-group row showcase_row_area">
                             <div class="col-md-2 showcase_text_area text-left">
-                                <label for="inputType1">Tên loại</label>
+                                <label>Tên bảng chấm công</label>
                             </div>
-                            <div class="col-md-9 showcase_content_area text-left">
-                                <input type="text" class="form-control" id="inputType1" name="tendanhmuc">
+                            <div class="col-md-9 showcase_content_area">
+                                <select class="custom-select" name="tenbcc">
+                                <option value="0">Chọn tên bảng chấm công</option>
+                                    <?php foreach ($chamcong as $item) : ?>
+                                        <option value="<?= $item->id ?>"><?= $item->tenbcc ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
                         </div>
                   
                         <div class="form-group row showcase_row_area">
                             <div class="col-md-2 showcase_text_area text-left">
-                                <label for="inputType9">Mô tả</label>
+                                <label for="inputType9">Người tạo</label>
                             </div>
                             <div class="col-md-9 showcase_content_area">
-                                <textarea class="form-control" id="inputType9" cols="12" rows="5" name="mota"></textarea>
+                            <input type="text" class="form-control" id="inputType1" name="nguoitao">
+                            </div>
+                        </div>
+                        <div class="form-group row showcase_row_area">
+                            <div class="col-md-2 showcase_text_area text-left">
+                                <label for="inputType9">Thời gian tạo</label>
+                            </div>
+                            <div class="col-md-9 showcase_content_area">
+                                <input type="date" class="form-control" id="inputType1" name="ngaytao">
+                            </div>
+                        </div>
+                        <div class="form-group row showcase_row_area">
+                            <div class="col-md-2 showcase_text_area text-left">
+                                <label for="inputType9">Lương</label>
+                            </div>
+                            <div class="col-md-9 showcase_content_area">
+                            <input type="text" class="form-control" id="inputType1" name="luong">
                             </div>
                         </div>
                         <div class="form-group row showcase_row_area">

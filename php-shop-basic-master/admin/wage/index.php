@@ -8,15 +8,15 @@ if (!Auth::user()) {
   Redirect::url('admin/account/login.php');
 }
 
-$sql = "SELECT * FROM danhmuc_blog";
+$sql = "SELECT * FROM luong";
 $data = $DB->query($sql);
 
-$title = "Danh mục tin tức";
+$title = "Danh mục lương";
 include('../../layouts/admin/header.php');
 
 ?>
 <div class="d-flex justify-content-between mb-4">
-  <h4>Danh mục tin tức </h4>
+  <h4>Danh mục lương </h4>
   <a href="<?= url('admin/blog-category/create.php') ?>" class="btn btn-primary btn-sm">Thêm mới</a>
 </div>
 <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -24,11 +24,13 @@ include('../../layouts/admin/header.php');
     <tr>
       <th class="th-sm">#
       </th>
-      <th class="th-sm">Tên loại
+      <th class="th-sm">Mã BCC
       </th>
-      <th class="th-sm">Mô tả
+      <th class="th-sm">Người tạo
       </th>
       <th class="th-sm text-center">Thời gian tạo
+      </th>
+      <th class="th-sm text-center">Lương
       </th>
       <th class="th-sm text-center" colspan="2">Hành động</th>
     </tr>
@@ -39,14 +41,15 @@ include('../../layouts/admin/header.php');
       <?php $i = 1 ?>
       <?php foreach($data as $item): ?>
     <tr>
-      <td style="width:50px"><?= $i ?></td>
-      <td><?= $item->tendanhmuc ?></td>
+      <td><?= $i ?></td>
+      <td><?= $item->maBCC ?></td>
       <td>
-        <?= strlen($item->mota) > 50 ?  substr($item->mota,0,50).' ...' : $item->mota ?>
+        <?= strlen($item->nguoitao) > 50 ?  substr($item->nguoitao,0,50).' ...' : $item->nguoitao ?>
       </td>
-      <td style="width:120px">
-        <?= formatDate($item->created_at)?>
+      <td>
+        <?= formatDate($item->ngaytao)?>
       </td>
+      <td style="width:50px"><?= $item->luong ?></td>
       <td class="text-center" style="width:50px">
         <a href="<?= url("admin/blog-category/update.php?id=$item->id") ?>"><b class='badge badge-warning status-Content'>Sửa</b></a>
       </td>
@@ -66,13 +69,13 @@ include('../../layouts/admin/header.php');
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Xóa danh mục</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Xóa lương</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
-                Bạn có muốn xóa danh mục không ?
+                Bạn có muốn xóa lương không ?
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
