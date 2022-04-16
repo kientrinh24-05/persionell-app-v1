@@ -154,7 +154,7 @@
         </div>
       </div>
       <ul class="navigation-menu">
-        <li class="nav-category-divider">MAIN</li>
+        <li class="nav-employment-divider">MAIN</li>
         <li>
           <a href="<?= url('admin/dashboard') ?>">
             <span class="link-title">Dashboard</span>
@@ -168,7 +168,7 @@
           </a>
           <ul class="collapse navigation-submenu" id="sample-pages">
             <li>
-              <a href="<?= url('admin/category') ?>">Quản lý nhân viên</a>
+              <a href="<?= url('admin/employment') ?>">Quản lý nhân viên</a>
             </li>
           </ul>
         </li>
