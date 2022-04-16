@@ -18,6 +18,7 @@ if (Input::hasPost('update')) {
     $sodienthoai     = Input::post('sodienthoai');
     $diachi       = Input::post('diachi');
     $cccd       = Input::post('cccd');
+    $phongban = Input::post('maPB');
     $hesoluong       = Input::post('hesoluong');
     $trinhdo       = Input::post('trinhdo');
     $chucvu       = Input::post('chucvu');
@@ -49,6 +50,7 @@ if (Input::hasPost('update')) {
             'sodienthoai' => $sodienthoai,
             'diachi' => $diachi,
             'cccd' => $cccd,
+            'maPB' => $phongban,
             'hesoluong' => $hesoluong,
             'trinhdo' => $trinhdo,
             'chucvu' => $chucvu,
@@ -173,7 +175,7 @@ include('../../layouts/admin/header.php');
                                 <label>Tên phòng ban</label>
                             </div>
                             <div class="col-md-9 showcase_content_area">
-                                <select class="custom-select" name="tenphongban">
+                                <select class="custom-select" name="maPB">
                                 <option value="0">Chọn phòng ban</option>
                                     <?php foreach ($news as $item) : ?>
                                         <option value="<?= $item->id ?>"><?= $item->tenphongban ?></option>

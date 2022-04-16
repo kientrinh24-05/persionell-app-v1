@@ -19,7 +19,7 @@ if (Input::hasPost('create')) {
     $sodienthoai     = Input::post('sodienthoai');
     $diachi       = Input::post('diachi');
     $cccd       = Input::post('cccd');
-    $phongban = Input::post('phongban_id');
+    $phongban = Input::post('maPB');
     $hesoluong       = Input::post('hesoluong');
     $trinhdo       = Input::post('trinhdo');
     $chucvu       = Input::post('chucvu');
@@ -156,21 +156,13 @@ include('../../layouts/admin/header.php');
                                 <input type="text" class="form-control" id="inputType1" name="cccd">
                             </div>
                         </div>
-                        <!--  -->
-                        <!-- <div class="form-group row showcase_row_area">
-                            <div class="col-md-2 showcase_text_area text-left">
-                                <label for="inputType1">Tên phong ban</label>
-                            </div>
-                            <div class="col-md-9 showcase_content_area text-left">
-                                <input type="text" class="form-control" id="inputType1" name="tenphongban">
-                            </div>
-                        </div> -->
+                    
                         <div class="form-group row showcase_row_area">
                             <div class="col-md-2 showcase_text_area text-left">
                                 <label>Tên phòng ban</label>
                             </div>
                             <div class="col-md-9 showcase_content_area">
-                                <select class="custom-select" name="tenphongban">
+                                <select class="custom-select" name="maPB">
                                 <option value="0">Chọn phòng ban</option>
                                     <?php foreach ($news as $item) : ?>
                                         <option value="<?= $item->id ?>"><?= $item->tenphongban ?></option>

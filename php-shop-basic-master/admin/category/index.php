@@ -65,7 +65,7 @@ include('../../layouts/admin/header.php');
         <a href="<?= url("admin/category/update.php?id=$item->id") ?>"><b class='badge badge-warning status-Content'>Sửa</b></a>
       </td>
       <td class="text-center" style="width:50px">
-      <a href="#"><b class='badge badge-danger status-Content' type="button" data-toggle="modal" data-target="#exampleModal-<?= $item->id ?>">Xóa</b></a>
+      <a href="#"><b class='badge badge-danger status-Content' type="button" data-toggle="modal" data-target="#exampleModal-<?= $item->id ?>">Lưu trữ</b></a>
       </td>
     </tr>
       <?php $i++ ?>
