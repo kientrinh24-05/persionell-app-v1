@@ -8,7 +8,7 @@ if (!Auth::user()) {
     Redirect::url('admin/account/login.php');
 }
 
-$sql = "SELECT baiviet.*, danhmuc_blog.tendanhmuc FROM baiviet join danhmuc_blog  on baiviet.danhmuc_id = danhmuc_blog.id";
+$sql = "SELECT * FROM chamcong AS C INNER JOIN nhanvien AS N ON C.manv = N.id INNER JOIN phongban AS P ON P.id = N.maPB";
 $data = $DB->query($sql);
 
 $title = "Bài viết";
@@ -16,7 +16,7 @@ include('../../layouts/admin/header.php');
 
 ?>
 <div class="d-flex justify-content-between mb-4">
-    <h4>Danh sách bài viết </h4>
+    <h4>Danh sách chấm công </h4>
     <a href="<?= url('admin/blog/create.php') ?>" class="btn btn-primary btn-sm">Thêm mới</a>
 </div>
 <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -24,15 +24,20 @@ include('../../layouts/admin/header.php');
         <tr>
             <th class="th-sm">#ID
             </th>
-            <th class="th-sm">Tiêu đề
+            <th class="th-sm">Tên bảng chấm công
             </th>
-            <th class="th-sm">Đoạn trích
+            <th class="th-sm">Tên nhân viên
             </th>
-            <th class="th-sm">Danh mục
+            <th class="th-sm">Tên phòng ban
             </th>
-            <th class="th-sm text-center">Thời gian tạo
+            <th class="th-sm text-center">Số ngày nghỉ
             </th>
-            <th  class="th-sm text-center" colspan="2">Hành động</th>
+            <th class="th-sm text-center">Tổng số ngày làm
+            </th>
+            <th class="th-sm text-center">Người lập
+            </th>
+            <th class="th-sm text-center">Ngày lập
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -42,23 +47,34 @@ include('../../layouts/admin/header.php');
                 <tr>
                     <td style="width:50px"><?= $i ?></td>
                     <td>
-                      <?= strlen($item->tieude) > 50 ?  substr($item->tieude, 0, 50) . ' ...' : $item->tieude ?>
+                      <?= strlen($item->tenbcc) > 50 ?  substr($item->tenbcc, 0, 50) . ' ...' : $item->tenbcc ?>
                     </td>
                     <td>
-                        <?= strlen($item->doantrich) > 200 ?  substr($item->mota, 0, 200) . ' ...' : $item->doantrich ?>
+                        <?= strlen($item->tennhanvien) > 200 ?  substr($item->tennhanvien, 0, 200) . ' ...' : $item->tennhanvien ?>
                     </td>
                     <td>
-                        <?= strlen($item->tendanhmuc) > 200 ?  substr($item->mota, 0, 200) . ' ...' : $item->doantrich ?>
+                        <?= strlen($item->tenphongban) > 200 ?  substr($item->tenphongban, 0, 200) . ' ...' : $item->tenphongban ?>
                     </td>
+                    <td >
+                        <?= $item->songaynghi ?>
+                    </td>
+                    <td >
+                        <?= $item->tongsongaylam ?>
+                    </td>
+                    <td>
+                        <?= $item->nguoilap ?>
+                    </td>
+                    
                     <td style="width:120px">
-                        <?= formatDate($item->created_at) ?>
+                        <?= formatDate($item->ngaylap) ?>
                     </td>
-                    <td class="text-center" style="width:50px">
+
+                    <!-- <td class="text-center" style="width:50px">
                         <a href="<?= url("admin/blog/update.php?id=$item->id") ?>"><b class='badge badge-warning status-Content'>Sửa</b></a>
                     </td>
                     <td class="text-center" style="width:50px">
                         <a href="#"><b class='badge badge-danger status-Content' type="button" data-toggle="modal" data-target="#exampleModal-<?= $item->id ?>">Xóa</b></a>
-                    </td>
+                    </td> -->
                 </tr>
                 <?php $i++ ?>
             <?php endforeach ?>

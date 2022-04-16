@@ -90,7 +90,7 @@ include('../../layouts/admin/header.php');
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <a href="<?= url("admin/category/delete.php?id=$item->id") ?>" class="btn btn-primary">Xóa</a>
+                <a href="<?= url("admin/category/update.php?id=$item->id") ?>" class="btn btn-primary">Xóa</a>
               </div>
             </div>
           </div>
