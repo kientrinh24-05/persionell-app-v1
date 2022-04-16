@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
+<<<<<<< HEAD:shop (3).sql
 -- Thời gian đã tạo: Th4 16, 2022 lúc 07:34 AM
+=======
+-- Thời gian đã tạo: Th4 15, 2022 lúc 05:41 PM
+>>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -119,20 +123,15 @@ CREATE TABLE `danhgia_sanpham` (
 --
 
 CREATE TABLE `danhmuc` (
-  `id` int(11) NOT NULL,
-  `tendanhmuc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mota` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`id`, `tendanhmuc`, `mota`, `created_at`, `updated_at`) VALUES
-(1, 'loai 2', 'mo ta 2', '2022-02-09 06:05:28', NULL),
-(2, 'loai 1 1 2 1', 'hêhhe', '2022-02-09 06:05:17', NULL);
+INSERT INTO `danhmuc` (`id`) VALUES
+(1);
 
 -- --------------------------------------------------------
 
@@ -250,6 +249,7 @@ CREATE TABLE `nhanvien` (
   `luutru` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD:shop (3).sql
 --
 -- Đang đổ dữ liệu cho bảng `nhanvien`
 --
@@ -259,6 +259,8 @@ INSERT INTO `nhanvien` (`id`, `tennhanvien`, `ngaysinh`, `gioitinh`, `sodienthoa
 (2, 'thao tghi', '2000-12-12', 'nữ', '0374236231', 'đường a', '0123456789', 2, 2.5, 'đại học', 'kế toán', 0),
 (3, 'huy', '1997-01-12', 'nam', '0379563562', 'đương bnmj', '0147852369', 2, 2.5, 'đại học', 'quản lý nhân sự', 0);
 
+=======
+>>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
 -- --------------------------------------------------------
 
 --
@@ -271,6 +273,7 @@ CREATE TABLE `phongban` (
   `soluongnv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+<<<<<<< HEAD:shop (3).sql
 --
 -- Đang đổ dữ liệu cho bảng `phongban`
 --
@@ -279,6 +282,8 @@ INSERT INTO `phongban` (`id`, `tenphongban`, `soluongnv`) VALUES
 (1, 'kế toán', 5),
 (2, 'Nhân sự', 4);
 
+=======
+>>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
 -- --------------------------------------------------------
 
 --
@@ -311,6 +316,48 @@ INSERT INTO `sanpham` (`id`, `tensanpham`, `mota`, `giaban`, `soluong`, `danhmuc
 (6, 'phi hanh gia', '12121', 20000, 100, 1, 5, '/public/uploads/images/5368-avatar.jpeg', 5, 0, 1, '2022-02-09 04:04:54', NULL),
 (7, 'hi san pham mew', '1212', 120000, 100, 1, 5, '/public/uploads/images/1187-user_avatar-31-512.png', 5, 0, 1, '2022-02-09 04:05:36', NULL),
 (8, 'nhieu anh', 'mo ta 2', 500000, 40, 2, 5, '/public/uploads/images/3216-user_avatar-31-512.png', 5, 0, 1, '2022-02-09 04:25:50', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `the`
+--
+
+CREATE TABLE `the` (
+  `id` int(11) NOT NULL,
+  `ten` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `thoigiantao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `the`
+--
+
+INSERT INTO `the` (`id`, `ten`, `mota`, `soluong`, `thoigiantao`) VALUES
+(1, 'tag_demo1', 'mota dem 1', 0, '2022-04-07 02:53:44');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `thesanpham`
+--
+
+CREATE TABLE `thesanpham` (
+  `id` int(11) NOT NULL,
+  `tenthe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mota` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `mau` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `thesanpham`
+--
+
+INSERT INTO `thesanpham` (`id`, `tenthe`, `mota`, `created_at`, `mau`) VALUES
+(1, 'tag1', 'mota11\r\n', '2022-04-05 07:36:13', 'blue');
 
 -- --------------------------------------------------------
 
@@ -413,6 +460,18 @@ ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `the`
+--
+ALTER TABLE `the`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `thesanpham`
+--
+ALTER TABLE `thesanpham`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
@@ -450,7 +509,7 @@ ALTER TABLE `danhgia_sanpham`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc_blog`
@@ -480,13 +539,21 @@ ALTER TABLE `lienhe`
 -- AUTO_INCREMENT cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
+<<<<<<< HEAD:shop (3).sql
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
 
 --
 -- AUTO_INCREMENT cho bảng `phongban`
 --
 ALTER TABLE `phongban`
+<<<<<<< HEAD:shop (3).sql
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
@@ -495,10 +562,32 @@ ALTER TABLE `sanpham`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT cho bảng `the`
+--
+ALTER TABLE `the`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `thesanpham`
+--
+ALTER TABLE `thesanpham`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `nhanvien`
+--
+ALTER TABLE `nhanvien`
+  ADD CONSTRAINT `nhanvien_ibfk_1` FOREIGN KEY (`maPB`) REFERENCES `phongban` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
