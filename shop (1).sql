@@ -3,13 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
-<<<<<<< HEAD:shop (3).sql
--- Thời gian đã tạo: Th4 16, 2022 lúc 07:34 AM
-=======
--- Thời gian đã tạo: Th4 15, 2022 lúc 05:41 PM
->>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
--- Phiên bản máy phục vụ: 10.4.20-MariaDB
--- Phiên bản PHP: 8.0.9
+-- Thời gian đã tạo: Th4 16, 2022 lúc 06:20 PM
+-- Phiên bản máy phục vụ: 10.4.22-MariaDB
+-- Phiên bản PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -73,8 +69,31 @@ INSERT INTO `baiviet` (`id`, `tieude`, `doantrich`, `noidung`, `danhmuc_id`, `hi
 (1, 'bai viet 1', 'doan trich 1', 'noi dung 1', 2, '', 1, '2022-02-09 09:05:33', NULL),
 (2, 'bai viet 1', '12341231', 'noi dung 1', 2, '', 1, '2022-02-09 09:06:14', NULL),
 (3, 'bai viet 1', '1212', '21212', 2, '', 1, '2022-02-09 09:09:30', NULL),
-(4, 'bai viet 1sadsad', '1212', '21212', 2, '/public/uploads/images/2392-avatar.jpeg', 1, '2022-02-09 09:37:12', NULL),
-(6, 'bài viến demo', 'cỞ ví dụ này, bảng mẹ sanpham c\r\n\r\n', 'cỞ ví dụ này, bảng mẹ sanpham c', 2, '/public/uploads/images/2764-tải xuống.jpg', 1, '2022-04-16 05:15:45', NULL);
+(4, 'bai viet 1sadsad', '1212', '21212', 2, '/public/uploads/images/2392-avatar.jpeg', 1, '2022-02-09 09:37:12', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chamcong`
+--
+
+CREATE TABLE `chamcong` (
+  `id` int(11) NOT NULL,
+  `tenbcc` varchar(150) NOT NULL,
+  `manv` int(11) NOT NULL,
+  `mapb` int(11) NOT NULL,
+  `ngaylap` datetime NOT NULL,
+  `nguoilap` varchar(150) NOT NULL,
+  `songaynghi` float NOT NULL,
+  `tongsongaylam` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `chamcong`
+--
+
+INSERT INTO `chamcong` (`id`, `tenbcc`, `manv`, `mapb`, `ngaylap`, `nguoilap`, `songaynghi`, `tongsongaylam`) VALUES
+(1, 'Chấm công 12', 4, 1, '2022-04-16 11:29:27', 'Trần kane', 1, 24);
 
 -- --------------------------------------------------------
 
@@ -123,15 +142,20 @@ CREATE TABLE `danhgia_sanpham` (
 --
 
 CREATE TABLE `danhmuc` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `tendanhmuc` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mota` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
-INSERT INTO `danhmuc` (`id`) VALUES
-(1);
+INSERT INTO `danhmuc` (`id`, `tendanhmuc`, `mota`, `created_at`, `updated_at`) VALUES
+(1, 'loai 2', 'mo ta 2', '2022-02-08 23:05:28', NULL),
+(2, 'loai 1 1 2 1', 'hêhhe', '2022-02-08 23:05:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -231,6 +255,28 @@ INSERT INTO `lienhe` (`id`, `hoten`, `email`, `phone`, `chude`, `noidung`, `tran
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `luong`
+--
+
+CREATE TABLE `luong` (
+  `id` int(11) NOT NULL,
+  `maBCC` int(11) NOT NULL,
+  `ngaytao` datetime NOT NULL,
+  `nguoitao` varchar(1000) NOT NULL,
+  `luong` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `luong`
+--
+
+INSERT INTO `luong` (`id`, `maBCC`, `ngaytao`, `nguoitao`, `luong`) VALUES
+(1, 11, '2022-04-16 07:56:57', 'Trần Kane', 250000),
+(21, 11, '2022-04-16 07:56:57', 'Trần Kane', 250000);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `nhanvien`
 --
 
@@ -249,18 +295,13 @@ CREATE TABLE `nhanvien` (
   `luutru` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-<<<<<<< HEAD:shop (3).sql
 --
 -- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
 INSERT INTO `nhanvien` (`id`, `tennhanvien`, `ngaysinh`, `gioitinh`, `sodienthoai`, `diachi`, `cccd`, `maPB`, `Hesoluong`, `trinhdo`, `chucvu`, `luutru`) VALUES
-(1, 'thao', '2022-04-07', 'nam', '0374236231', 'dương b hà nôi', '0123456789', 1, 2.5, 'tiến sĩ', 'kế tians', 0),
-(2, 'thao tghi', '2000-12-12', 'nữ', '0374236231', 'đường a', '0123456789', 2, 2.5, 'đại học', 'kế toán', 0),
-(3, 'huy', '1997-01-12', 'nam', '0379563562', 'đương bnmj', '0147852369', 2, 2.5, 'đại học', 'quản lý nhân sự', 0);
+(4, 'Kien', '1999-05-24', 'Nam', '0326276307', 'Sơn Hòa ', '1221436521', 1, 2, 'Kane', 'KAne', 1);
 
-=======
->>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
 -- --------------------------------------------------------
 
 --
@@ -273,17 +314,13 @@ CREATE TABLE `phongban` (
   `soluongnv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-<<<<<<< HEAD:shop (3).sql
 --
 -- Đang đổ dữ liệu cho bảng `phongban`
 --
 
 INSERT INTO `phongban` (`id`, `tenphongban`, `soluongnv`) VALUES
-(1, 'kế toán', 5),
-(2, 'Nhân sự', 4);
+(1, 'Giam doc', 12);
 
-=======
->>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
 -- --------------------------------------------------------
 
 --
@@ -399,6 +436,14 @@ ALTER TABLE `baiviet`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `chamcong`
+--
+ALTER TABLE `chamcong`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `manv` (`manv`),
+  ADD KEY `mapb` (`mapb`);
+
+--
 -- Chỉ mục cho bảng `chitietdonhang`
 --
 ALTER TABLE `chitietdonhang`
@@ -408,12 +453,6 @@ ALTER TABLE `chitietdonhang`
 -- Chỉ mục cho bảng `danhgia_sanpham`
 --
 ALTER TABLE `danhgia_sanpham`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `danhmuc`
---
-ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -438,6 +477,12 @@ ALTER TABLE `khachhang`
 -- Chỉ mục cho bảng `lienhe`
 --
 ALTER TABLE `lienhe`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `luong`
+--
+ALTER TABLE `luong`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -491,7 +536,13 @@ ALTER TABLE `anhsanpham`
 -- AUTO_INCREMENT cho bảng `baiviet`
 --
 ALTER TABLE `baiviet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT cho bảng `chamcong`
+--
+ALTER TABLE `chamcong`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `chitietdonhang`
@@ -504,12 +555,6 @@ ALTER TABLE `chitietdonhang`
 --
 ALTER TABLE `danhgia_sanpham`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `danhmuc`
---
-ALTER TABLE `danhmuc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `danhmuc_blog`
@@ -539,21 +584,13 @@ ALTER TABLE `lienhe`
 -- AUTO_INCREMENT cho bảng `nhanvien`
 --
 ALTER TABLE `nhanvien`
-<<<<<<< HEAD:shop (3).sql
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
->>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `phongban`
 --
 ALTER TABLE `phongban`
-<<<<<<< HEAD:shop (3).sql
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-=======
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
->>>>>>> 3437f096cd57084d47606e0fdeb456db3204d92d:shop.sql
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
@@ -582,6 +619,13 @@ ALTER TABLE `users`
 --
 -- Các ràng buộc cho các bảng đã đổ
 --
+
+--
+-- Các ràng buộc cho bảng `chamcong`
+--
+ALTER TABLE `chamcong`
+  ADD CONSTRAINT `chamcong_ibfk_1` FOREIGN KEY (`manv`) REFERENCES `nhanvien` (`id`),
+  ADD CONSTRAINT `chamcong_ibfk_2` FOREIGN KEY (`mapb`) REFERENCES `phongban` (`id`);
 
 --
 -- Các ràng buộc cho bảng `nhanvien`
