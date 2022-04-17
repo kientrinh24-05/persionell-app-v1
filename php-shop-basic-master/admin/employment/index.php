@@ -36,7 +36,7 @@ include('../../layouts/admin/header.php');
       <th class="th-sm">Hệ số lương </th>
       <th class="th-sm">trình độ </th>
       <th class="th-sm">Chức vụ </th>
-      <!-- <th class="th-sm">Lưu trữ </th> -->
+      
 
       <th class="th-sm text-center" colspan="2">Hành động</th>
     </tr>

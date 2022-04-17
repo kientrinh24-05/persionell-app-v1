@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 16, 2022 lúc 06:20 PM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 8.1.2
+-- Thời gian đã tạo: Th4 17, 2022 lúc 04:19 AM
+-- Phiên bản máy phục vụ: 10.4.20-MariaDB
+-- Phiên bản PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -85,15 +85,16 @@ CREATE TABLE `chamcong` (
   `ngaylap` datetime NOT NULL,
   `nguoilap` varchar(150) NOT NULL,
   `songaynghi` float NOT NULL,
-  `tongsongaylam` float NOT NULL
+  `tongsongaylam` float NOT NULL,
+  `luongngay` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `chamcong`
 --
 
-INSERT INTO `chamcong` (`id`, `tenbcc`, `manv`, `mapb`, `ngaylap`, `nguoilap`, `songaynghi`, `tongsongaylam`) VALUES
-(1, 'Chấm công 12', 4, 1, '2022-04-16 11:29:27', 'Trần kane', 1, 24);
+INSERT INTO `chamcong` (`id`, `tenbcc`, `manv`, `mapb`, `ngaylap`, `nguoilap`, `songaynghi`, `tongsongaylam`, `luongngay`) VALUES
+(1, 'Chấm công 12', 4, 1, '2022-04-16 11:29:27', 'Trần kane', 1, 24, 200000);
 
 -- --------------------------------------------------------
 
